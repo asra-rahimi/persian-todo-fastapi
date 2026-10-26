@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "▶ تودولیست (FastAPI)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run.py",
+      "cwd": "${workspaceFolder}",
+      "env": { "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8" },
+      "console": "integratedTerminal",
+      "justMyCode": true
+    }
+  ]
+}

@@ -1,0 +1,333 @@
+/* ============ تم و متغیرها ============ */
+:root{
+  --pink:#ff4d8d;
+  --violet:#8b5cf6;
+  --cyan:#22d3ee;
+  --amber:#fbbf24;
+  --green:#34d399;
+  --red:#ff5d6c;
+
+  --bg:#0b0a1f;
+  --text:#f2f0ff;
+  --muted:#a49fc4;
+  --card:rgba(255,255,255,.055);
+  --card-2:rgba(255,255,255,.09);
+  --line:rgba(255,255,255,.12);
+  --shadow:0 24px 60px -20px rgba(0,0,0,.65);
+  --radius:22px;
+}
+
+html[data-theme="light"]{
+  --bg:#f6f3ff;
+  --text:#1c1638;
+  --muted:#6d6690;
+  --card:rgba(255,255,255,.72);
+  --card-2:rgba(255,255,255,.92);
+  --line:rgba(28,22,56,.09);
+  --shadow:0 24px 50px -24px rgba(80,60,160,.35);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:"Segoe UI", Tahoma, "Iranian Sans", sans-serif;
+  display:flex; align-items:flex-start; justify-content:center;
+  padding:40px 18px 60px; min-height:100%;
+  transition:background .5s ease, color .35s ease;
+  overflow-x:hidden;
+}
+
+/* ============ حباب‌های رنگی پس‌زمینه ============ */
+.blobs{position:fixed; inset:0; overflow:hidden; z-index:0; pointer-events:none; filter:blur(70px)}
+.blob{position:absolute; border-radius:50%; opacity:.55; animation:float 22s ease-in-out infinite}
+.b1{width:460px;height:460px;background:var(--pink);top:-140px;right:-120px}
+.b2{width:420px;height:420px;background:var(--violet);bottom:-160px;left:-110px;animation-delay:-6s}
+.b3{width:360px;height:360px;background:var(--cyan);top:38%;left:52%;opacity:.35;animation-delay:-12s}
+.b4{width:300px;height:300px;background:var(--amber);bottom:8%;right:22%;opacity:.25;animation-delay:-3s}
+html[data-theme="light"] .blob{opacity:.42}
+html[data-theme="light"] .b4{opacity:.3}
+
+@keyframes float{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(28px,-34px) scale(1.08)}
+  66%{transform:translate(-24px,22px) scale(.95)}
+}
+
+/* ============ قالب اصلی ============ */
+.app{
+  position:relative; z-index:1; width:100%; max-width:620px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:26px 24px 18px;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  animation:rise .6s cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes rise{from{opacity:0; transform:translateY(18px)} to{opacity:1; transform:none}}
+
+/* ============ سربرگ ============ */
+.head{display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:20px}
+.brand{display:flex; align-items:center; gap:13px}
+.logo{
+  width:50px;height:50px;border-radius:16px; display:grid; place-items:center;
+  font-size:24px; font-weight:800; color:#fff;
+  background:linear-gradient(135deg,var(--pink),var(--violet) 60%,var(--cyan));
+  box-shadow:0 10px 24px -8px rgba(255,77,141,.7);
+  animation:pulse 4s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{transform:scale(1)} 50%{transform:scale(1.05)}}
+
+h1{
+  margin:0; font-size:22px; letter-spacing:-.3px;
+  background:linear-gradient(90deg,var(--pink),var(--violet),var(--cyan));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.sub{margin:3px 0 0; font-size:12.5px; color:var(--muted)}
+
+.theme-btn{
+  width:44px;height:44px;border-radius:14px; cursor:pointer; font-size:18px;
+  background:var(--card-2); color:var(--text);
+  border:1px solid var(--line); transition:.2s;
+}
+.theme-btn:hover{transform:rotate(-14deg) scale(1.06); border-color:var(--violet)}
+
+/* ============ نوار پیشرفت ============ */
+.progress-wrap{display:flex; align-items:center; gap:12px; margin-bottom:20px}
+.progress{
+  flex:1; height:9px; border-radius:99px; overflow:hidden;
+  background:rgba(255,255,255,.09);
+  border:1px solid var(--line);
+}
+.bar{
+  height:100%; width:0%;
+  background:linear-gradient(90deg,var(--pink),var(--violet),var(--cyan));
+  border-radius:99px;
+  transition:width .55s cubic-bezier(.2,.8,.2,1);
+  box-shadow:0 0 14px rgba(139,92,246,.7);
+}
+.pct{font-size:12.5px; color:var(--muted); min-width:34px; text-align:left; font-variant-numeric:tabular-nums}
+
+/* ============ فرم ورودی ============ */
+.composer{margin-bottom:18px}
+.input-row{display:flex; gap:10px}
+.input{
+  flex:1; min-width:0;
+  background:rgba(0,0,0,.18); color:var(--text);
+  border:1.5px solid var(--line); border-radius:15px;
+  padding:14px 16px; font-size:15px; font-family:inherit;
+  outline:none; transition:.2s;
+}
+html[data-theme="light"] .input{background:rgba(255,255,255,.8)}
+.input::placeholder{color:var(--muted)}
+.input:focus{
+  border-color:var(--violet);
+  box-shadow:0 0 0 4px rgba(139,92,246,.18);
+  background:rgba(0,0,0,.26);
+}
+html[data-theme="light"] .input:focus{background:#fff}
+
+.add{
+  display:inline-flex; align-items:center; gap:7px;
+  padding:0 20px; border:0; border-radius:15px; cursor:pointer;
+  font-family:inherit; font-size:14.5px; font-weight:700; color:#fff;
+  background:linear-gradient(135deg,var(--pink),var(--violet));
+  box-shadow:0 12px 26px -10px rgba(255,77,141,.85);
+  transition:transform .15s, filter .15s, box-shadow .15s;
+}
+.add:hover{filter:brightness(1.1); transform:translateY(-1px); box-shadow:0 16px 30px -10px rgba(255,77,141,.95)}
+.add:active{transform:translateY(1px) scale(.99)}
+
+/* ============ انتخاب اولویت ============ */
+.prio{display:flex; gap:8px; margin-top:12px; flex-wrap:wrap}
+.prio-btn{
+  display:inline-flex; align-items:center; gap:7px;
+  padding:7px 14px; border-radius:99px; cursor:pointer;
+  font-family:inherit; font-size:12.5px; font-weight:600;
+  color:var(--muted); background:transparent;
+  border:1.5px solid var(--line); transition:.2s;
+}
+.prio-btn .dot{width:8px;height:8px;border-radius:50%; background:currentColor; transition:.2s}
+.prio-btn[data-prio="high"]{color:#ff8791}
+.prio-btn[data-prio="med"]{color:var(--amber)}
+.prio-btn[data-prio="low"]{color:var(--green)}
+.prio-btn:hover{background:var(--card-2); transform:translateY(-1px)}
+.prio-btn.is-active{
+  color:#fff; border-color:transparent;
+  background:linear-gradient(135deg,var(--pink),var(--violet));
+  box-shadow:0 8px 18px -10px rgba(139,92,246,.9);
+}
+.prio-btn.is-active .dot{background:#fff}
+
+/* ============ فیلترها ============ */
+.filters{display:flex; gap:6px; margin-bottom:14px; padding:5px;
+  background:rgba(0,0,0,.16); border:1px solid var(--line); border-radius:14px}
+html[data-theme="light"] .filters{background:rgba(255,255,255,.6)}
+.filter{
+  flex:1; border:0; background:transparent; cursor:pointer;
+  font-family:inherit; font-size:13px; font-weight:600; color:var(--muted);
+  padding:9px 8px; border-radius:10px; transition:.2s;
+  display:inline-flex; align-items:center; justify-content:center; gap:6px;
+}
+.filter span{
+  font-size:11px; background:rgba(255,255,255,.1); color:var(--muted);
+  padding:1px 7px; border-radius:99px; min-width:20px;
+}
+.filter:hover{color:var(--text)}
+.filter.is-active{
+  color:#fff; background:linear-gradient(135deg,var(--violet),var(--pink));
+  box-shadow:0 8px 18px -12px rgba(139,92,246,.95);
+}
+.filter.is-active span{background:rgba(0,0,0,.25); color:#fff}
+
+/* ============ فهرست کارها ============ */
+.list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px}
+
+.item{
+  display:flex; align-items:center; gap:12px;
+  padding:13px 14px; border-radius:15px;
+  background:var(--card-2);
+  border:1px solid var(--line);
+  border-right:3px solid var(--amber);
+  transition:transform .18s, background .2s, border-color .2s, opacity .2s;
+  animation:pop .28s cubic-bezier(.2,.9,.3,1.2) both;
+}
+.item:hover{transform:translateX(-3px); background:rgba(255,255,255,.13)}
+html[data-theme="light"] .item:hover{background:#fff}
+.item[data-prio="high"]{border-right-color:var(--red)}
+.item[data-prio="med"]{border-right-color:var(--amber)}
+.item[data-prio="low"]{border-right-color:var(--green)}
+
+@keyframes pop{from{opacity:0; transform:translateY(-8px) scale(.98)} to{opacity:1; transform:none}}
+.item.leaving{opacity:0; transform:translateX(40px) scale(.96); pointer-events:none}
+
+/* دکمه تیک */
+.check{
+  flex:0 0 auto; width:26px; height:26px; border-radius:50%;
+  border:2px solid var(--line); background:transparent; cursor:pointer;
+  display:grid; place-items:center; padding:0; transition:.2s;
+}
+.check:hover{border-color:var(--violet); transform:scale(1.1)}
+.check svg{width:15px; height:15px; overflow:visible}
+.check path{
+  fill:none; stroke:#fff; stroke-width:3.2; stroke-linecap:round; stroke-linejoin:round;
+  stroke-dasharray:26; stroke-dashoffset:26; transition:stroke-dashoffset .3s ease .05s;
+}
+.item.done .check{
+  border-color:transparent;
+  background:linear-gradient(135deg,var(--green),var(--cyan));
+  box-shadow:0 6px 16px -6px rgba(52,211,153,.9);
+}
+.item.done .check path{stroke-dashoffset:0}
+
+/* متن کار */
+.text{
+  flex:1; min-width:0; font-size:14.5px; line-height:1.7;
+  word-break:break-word; cursor:text; padding:2px 0;
+  transition:color .2s;
+}
+.item.done .text{color:var(--muted); text-decoration:line-through; text-decoration-color:var(--pink);
+  text-decoration-thickness:2px}
+.text:focus{outline:none; color:var(--text); text-decoration:none}
+
+/* دکمه حذف */
+.del{
+  flex:0 0 auto; width:32px; height:32px; border-radius:10px; cursor:pointer;
+  border:0; background:transparent; color:var(--muted); font-size:17px; line-height:1;
+  opacity:.55; transition:.18s;
+}
+.del:hover{opacity:1; color:#fff; background:linear-gradient(135deg,#ff5d6c,#ff4d8d); transform:scale(1.06)}
+
+/* ============ حالت خالی ============ */
+.empty{display:none; text-align:center; padding:26px 0 10px; animation:rise .4s both}
+.empty.show{display:block}
+.empty-title{margin:12px 0 4px; font-size:15px; font-weight:700}
+.empty-sub{margin:0; font-size:12.5px; color:var(--muted)}
+
+/* ============ پاورقی ============ */
+.foot{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:16px; flex-wrap:wrap}
+.clear{
+  border:1px solid var(--line); background:transparent; color:var(--muted);
+  font-family:inherit; font-size:12.5px; padding:8px 14px; border-radius:11px; cursor:pointer;
+  transition:.2s;
+}
+.clear:hover{color:#fff; background:linear-gradient(135deg,#ff5d6c,#ff4d8d); border-color:transparent}
+.hint{font-size:11.5px; color:var(--muted); opacity:.8}
+
+/* ============ توست ============ */
+.toast{
+  position:fixed; bottom:26px; left:50%; transform:translate(-50%, 90px);
+  background:linear-gradient(135deg,var(--violet),var(--pink));
+  color:#fff; font-size:13.5px; font-weight:600;
+  padding:11px 22px; border-radius:99px;
+  box-shadow:0 18px 40px -14px rgba(139,92,246,.95);
+  opacity:0; transition:.35s cubic-bezier(.2,.8,.2,1); pointer-events:none; z-index:10;
+}
+.toast.show{opacity:1; transform:translate(-50%, 0)}
+
+/* ============ موبایل ============ */
+@media (max-width:520px){
+  body{padding:18px 12px 40px}
+  .app{padding:20px 16px 14px; border-radius:22px}
+  .input-row{flex-wrap:wrap}
+  .add{width:100%; justify-content:center; padding:13px}
+  .hint{display:none}
+  h1{font-size:19px}
+}
+
+/* احترام به کاهش انیمیشن */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none !important; transition:none !important}
+}
+
+/* ============ جست‌وجو ============ */
+.search-wrap{position:relative;margin:6px 0 14px}
+.search{
+  width:100%; padding:12px 44px 12px 14px; border-radius:14px;
+  border:1.5px solid var(--line); background:rgba(0,0,0,.16);
+  color:var(--text); font-family:inherit; font-size:13.5px; outline:none; transition:.2s;
+}
+.search::placeholder{color:var(--muted)}
+.search:focus{border-color:var(--cyan); box-shadow:0 0 0 4px rgba(34,211,238,.15)}
+.search-icon{position:absolute; top:50%; right:15px; transform:translateY(-50%); color:var(--muted); pointer-events:none}
+html[data-theme="light"] .search{background:rgba(255,255,255,.85)}
+
+/* ============ انتخاب برچسب ============ */
+.tag-pick{display:flex; align-items:center; gap:8px; margin-top:10px; flex-wrap:wrap}
+.tag-pick-label{font-size:12px; color:var(--muted)}
+.tag-btn{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px 12px; border-radius:99px; cursor:pointer;
+  font-family:inherit; font-size:12px; font-weight:600;
+  border:1.5px solid var(--line); background:transparent; color:var(--muted);
+  transition:.2s;
+}
+.tag-btn i{width:7px; height:7px; border-radius:50%; background:var(--tag-color); display:block}
+.tag-btn:hover{color:var(--text); border-color:var(--tag-color); transform:translateY(-1px)}
+.tag-btn.is-active{color:#fff; border-color:transparent; background:var(--tag-color);
+  box-shadow:0 8px 18px -12px var(--tag-color)}
+.tag-btn.is-active i{background:#fff}
+
+/* ============ محتوای کار ============ */
+.content{flex:1; min-width:0; display:flex; flex-direction:column; align-items:flex-start; gap:5px}
+.content .text{flex:none; max-width:100%}
+.tag{
+  align-self:flex-start; font-size:10.5px; font-weight:700;
+  color:var(--tag-color); background:color-mix(in srgb, var(--tag-color) 15%, transparent);
+  border:1px solid color-mix(in srgb, var(--tag-color) 38%, transparent);
+  padding:2px 9px; border-radius:99px; cursor:pointer; transition:.15s;
+}
+.tag:hover{background:color-mix(in srgb, var(--tag-color) 30%, transparent)}
+.item.done .tag{opacity:.55}
+
+/* ============ نوار فیلتر برچسب ============ */
+.tagbar{display:flex; align-items:center; gap:8px; margin:-4px 0 12px; font-size:12px; font-weight:600}
+.tagbar[hidden]{display:none}
+.tagbar button{
+  border:0; background:rgba(255,255,255,.1); color:var(--muted);
+  width:22px; height:22px; border-radius:50%; cursor:pointer; font-size:11px;
+  line-height:1; transition:.15s;
+}
+.tagbar button:hover{background:rgba(255,80,120,.35); color:#fff}

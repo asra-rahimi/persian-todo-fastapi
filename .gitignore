@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+.edge/
+data/*.db
+data/_test_todos.db
+*.log
+.env

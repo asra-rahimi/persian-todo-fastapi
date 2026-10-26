@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0a1f">
+<title>کارهای من — تودولیست رنگی</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✅</text></svg>">
+</head>
+<body>
+
+<div class="blobs" aria-hidden="true">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <span class="blob b3"></span>
+  <span class="blob b4"></span>
+</div>
+
+<main class="app">
+
+  <header class="head">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">✓</div>
+      <div>
+        <h1>کارهای من</h1>
+        <p class="sub">هر تیک، یک قدم جلوتر</p>
+      </div>
+    </div>
+    <button id="theme" class="theme-btn" aria-label="تغییر روشنایی">
+      <span id="theme-icon">🌙</span>
+    </button>
+  </header>
+
+  <section class="progress-wrap" aria-label="پیشرفت">
+    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="progress">
+      <div class="bar" id="bar"></div>
+    </div>
+    <span class="pct" id="pct">۰٪</span>
+  </section>
+
+  <form id="form" class="composer" autocomplete="off">
+    <div class="input-row">
+      <input id="input" class="input" type="text" maxlength="140"
+             placeholder="چه کاری باید انجام شود؟" aria-label="متن کار جدید">
+      <button class="add" type="submit" aria-label="افزودن کار">
+        افزودن
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor"
+                stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="prio" role="group" aria-label="اولویت">
+      <button type="button" class="prio-btn is-active" data-prio="med" aria-pressed="true">
+        <i class="dot"></i> معمولی
+      </button>
+      <button type="button" class="prio-btn" data-prio="high" aria-pressed="false">
+        <i class="dot"></i> فوری
+      </button>
+      <button type="button" class="prio-btn" data-prio="low" aria-pressed="false">
+        <i class="dot"></i> بعداً
+      </button>
+    </div>
+
+    <div class="tag-pick" id="tagPick" role="group" aria-label="برچسب">
+      <span class="tag-pick-label">برچسب:</span>
+    </div>
+  </form>
+
+  <div class="search-wrap">
+    <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+      <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <input id="search" class="search" type="search" placeholder="جست‌وجو در کارها…   ( / )"
+           aria-label="جست‌وجو در کارها">
+  </div>
+
+  <nav class="filters" aria-label="فیلتر">
+    <button class="filter is-active" data-filter="all">همه <span id="c-all">۰</span></button>
+    <button class="filter" data-filter="active">فعال <span id="c-active">۰</span></button>
+    <button class="filter" data-filter="done">انجام‌شده <span id="c-done">۰</span></button>
+  </nav>
+
+  <div class="tagbar" id="tagbar" hidden>
+    <span id="tagbar-text"></span>
+    <button id="tagbar-clear" type="button" aria-label="حذف فیلتر برچسب">✕</button>
+  </div>
+
+  <ul id="list" class="list"></ul>
+
+  <div id="empty" class="empty">
+    <svg viewBox="0 0 200 160" width="180" height="144" aria-hidden="true">
+      <defs>
+        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ff4d8d"/><stop offset="1" stop-color="#8b5cf6"/>
+        </linearGradient>
+      </defs>
+      <rect x="42" y="34" width="116" height="98" rx="18" fill="none"
+            stroke="url(#g)" stroke-width="3" opacity=".85"/>
+      <path d="M70 64h60M70 84h44M70 104h28" stroke="url(#g)" stroke-width="4"
+            stroke-linecap="round" opacity=".55"/>
+      <circle cx="150" cy="38" r="16" fill="url(#g)" opacity=".9"/>
+      <path d="M143 38l5 5 10-11" stroke="#fff" stroke-width="3.4" fill="none"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <p class="empty-title">هنوز کاری اضافه نکردی</p>
+    <p class="empty-sub">اولین کارت را بنویس و شروع کن</p>
+  </div>
+
+  <footer class="foot">
+    <button id="clear" class="clear" hidden>پاک کردن انجام‌شده‌ها</button>
+    <span class="hint">دوبار کلیک = ویرایش · Enter = ذخیره · / = جست‌وجو</span>
+  </footer>
+
+</main>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
